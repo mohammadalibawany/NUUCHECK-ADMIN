@@ -1,0 +1,10 @@
+android/ATTR_MINIFY=true
+android/ATTR_PROJECT_NAME=NUUCHECK ADMIN
+android/abi=armeabi-v7a
+android/distribute_path=C\:\\Users\\MohammadAli\\Desktop
+android/keystore_alias=nuuadmin
+android/keystore_password=101089
+android/keystore_path=C\:\\Users\\MohammadAli\\Desktop\\nuuadmin
+android/recent_output=C\:\\Users\\MohammadAli\\Desktop
+android/sdk_version=Android 4.3
+eclipse.preferences.version=1
