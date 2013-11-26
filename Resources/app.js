@@ -5,7 +5,21 @@ var win1 = Ti.UI.createWindow({
         backgroundColor: 'white'
 });
 
+var win3 = Ti.UI.createWindow({
+        backgroundColor: 'white'
+});
+
+var tableView = Ti.UI.createTableView({
+        backgroundColor:'#d0d0d0',
+        data: data1
+ });
+
 var view1 = Ti.UI.createView();
+
+var view3 = Ti.UI.createView();
+
+var data1=[];
+
 
 var view2 = Ti.UI.createView();
 
@@ -54,22 +68,7 @@ Cloud.Users.login({
 });
 
 // new
-button2.addEventListener('click',function(e){
-Cloud.Objects.query({
-    classname: 'checkin',
-    page: 1,
-    per_page: 10,
-    where: {
-        id: id.value
-    }
-      }, function(e) {
-    if (e.success) {
-              label.text = JSON.stringify(e.books);
-    } else {
-              alert('Error: ' +((e.error && e.message) || JSON.stringify(e)));        
-    } 
-  });
-});
+
 
 //
 var id = Ti.UI.createTextField({
@@ -102,37 +101,40 @@ var button3 = Ti.UI.createButton({
         height: 70
 });
 
-/// new 
-var scroll = Titanium.UI.createScrollView({ 
-        backgroundColor:'#fff',
-        contentWidth:300, 
-        contentHeight:"auto", 
-        showVerticalScrollIndicator:true, 
-        showHorizontalScrollIndicator:true,
-        borderRadius:5,
-        borderWidth:1,
-        borderColor:'#999',
-        top:145, 
-        left:10,
-        right:10,
-        bottom:10 
+
+button2.addEventListener('click',function(e){
+Cloud.Objects.query({
+    classname: 'Checkin',
+    page: 1,
+    per_page: 10,
+    where: {
+        ID: id.value
+    }
+}, function (e) {
+    if (e.success) {
+        alert('Success:\n' +
+            'Count: ' + e.Checkin.length);
+        for (var i = 0; i < e.Checkin.length; i++) {
+            var Checkin = e.Checkin[i];
+            tbldata.push({title: e.Checkin[i].ID});
+        }
+        
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+    
+tbldata.sort(sortByTitle);
+table.data=tbldata;
 });
-win2.add(scroll);
-
-var label = Ti.UI.createLabel({
-    backgroundColor:'#fff',
-    left:5,
-    top:5,
-    right:5,
-    font:{fontSize:15},
-    color:'#000'
 });
-scrollView.add(label);
-
-
 ///
 
+var table = Titanium.UI.createTableView({
+});
 
+
+win3.add(table);
 
 view2.add(id);
 
